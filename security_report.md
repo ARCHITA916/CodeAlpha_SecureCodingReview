@@ -41,9 +41,13 @@ The revised example:
 - Reads credentials from environment variables instead of hardcoding them.
 - Checks whether the required configuration is available.
 - Uses `hmac.compare_digest()` for comparing the supplied values.
+- Uses interactive input to avoid hardcoding demo credentials in the source code.
+- Reads the expected username and password from environment variables.
+- Checks whether the required configuration is available before validating login details.
+- Uses `hmac.compare_digest()` to compare the supplied values.
+- Requires further protections, such as rate limiting and secure password hashing, before use in a real application.
 
 This is a learning demonstration, not a production-ready authentication system. Production applications also need secure password hashing, rate limiting, and other authentication protections.
-
 ## 5. Static Analysis Results
 
 ### Original program
@@ -53,15 +57,17 @@ Command: `python -m bandit vulnerable_app.py`
 - Hardcoded password finding detected: B105
 - Severity: Low
 - Confidence: Medium
+- CWE: CWE-259
 
 ### Revised program
 
 Command: `python -m bandit -f txt .\secure_app.py`
 
-- Lines scanned: 15
+- Total lines scanned: 18
 - Issues identified: 0
+- Bandit did not identify any issues in the revised example during this scan.
 
-Bandit's result means that it did not identify any issues in the revised example. It does not guarantee that the program is completely secure.
+A clean Bandit scan does not guarantee that the program is completely secure. Manual code review and additional security testing are also important.
 
 ## 6. Conclusion
 
