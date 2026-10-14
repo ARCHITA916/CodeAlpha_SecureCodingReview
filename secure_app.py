@@ -4,10 +4,10 @@
 
 import os
 import hmac
+import getpass
 
 
 def login(username, password):
-    # Read credentials from environment variables
     saved_username = os.getenv("APP_USERNAME")
     saved_password = os.getenv("APP_PASSWORD")
 
@@ -24,4 +24,7 @@ def login(username, password):
         print("Invalid username or password.")
 
 
-login("admin", "admin123")
+username = input("Enter username: ")
+password = getpass.getpass("Enter password: ")
+
+login(username, password)
